@@ -1,0 +1,4 @@
+This is the classic hangman game where the user guesses letters in an unkown word.
+After six wrong guesses, the game is lost.
+
+Coded in *Python*
