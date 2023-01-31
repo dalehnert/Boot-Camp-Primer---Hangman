@@ -1,0 +1,69 @@
+hangman={0:'''
+        ____________
+         |''',
+        1:'''
+        ____________
+         |
+         O''',
+        2:'''
+        ____________
+         |
+         O
+        /''',
+        3:'''
+        ____________
+         |
+         O
+        / \\''',
+        4:'''
+        ____________
+         |
+         O
+        / \\
+         |''',
+        5:'''
+        ____________
+         |
+         O
+        / \\
+         |
+        /''',
+        6:'''
+        ____________
+         |
+         O
+        / \\
+         |
+        / \\ '''}
+
+from random import randrange
+list_of_words = ['FUTURE', 'SECRET', 'CAPITAL', 'CANARY', 'JABRONI', 'FOURTEEN', 'RHYTHMN']
+word = list_of_words[randrange(len(list_of_words))]
+hidden_word = '-'*len(word)
+mistake_count = 6
+print(f'Hidden word is {hidden_word}')
+print('||=||=||=||=||=||=||=||')
+while mistake_count > 0 and hidden_word.count('-') != 0:
+    letter_count = 0
+    index_count = 0
+
+    print('please pick a letter:')
+    picked_letter = input().capitalize()
+
+    for letter in word:
+        if letter == picked_letter:
+            hidden_word = hidden_word[:index_count] + picked_letter + hidden_word[index_count+1:]
+            letter_count += 1
+        index_count += 1
+    if word.count(picked_letter) > 0:
+        print(f'CORRECT! The word contains the {picked_letter}')
+        print(hidden_word)
+    else:
+        mistake_count -= 1
+        print(f'WRONG! Number of mistakes left: {mistake_count}')
+        print(hangman[6 - mistake_count])
+    print('||=||=||=||=||=||=||=||')
+if mistake_count == 0:
+    print('u ded :(')
+else:
+    print('congratulations!')
